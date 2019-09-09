@@ -1,0 +1,10 @@
+* {margin: 0; padding: 0;}
+body {font-family: arial, sans-serif; padding: 2%;}
+
+.result {border: 1px solid #c6c6c6; border-radius: 5px;  margin: 0 0 2em; padding: 2%; width: 96%; overflow: hidden;}
+
+.shadow {box-shadow: 0 0 3px rgba(0,0,0,.3);}
+
+.pagination {float: right; margin-bottom: 1em; text-align: right; width: 100%;}
+.pagination li {display: inline-block;}
+.pagination .active {background-color: grey; color: white;} 

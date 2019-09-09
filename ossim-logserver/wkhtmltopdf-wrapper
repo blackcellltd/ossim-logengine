@@ -1,0 +1,8 @@
+#!/bin/bash
+# Script requires xvfb-run command (provided by xorg-x11-server-Xvfb package)
+# Require exactly two arguments (input and output file)
+if [ $# -ne 2 ]; then
+    echo "Syntax: $0 <input file> <output file>"
+    exit 1
+fi
+xvfb-run --server-args="-screen 0, 1280x1024x24" /usr/bin/wkhtmltopdf-amd64 --use-xserver $1 $2

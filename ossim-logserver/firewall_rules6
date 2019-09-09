@@ -1,0 +1,10 @@
+ip6tables -F
+ip6tables -P INPUT DROP
+ip6tables -A INPUT -m state --state ESTABLISHED -m comment --comment "Allow ESTABLISHED" -j ACCEPT
+ip6tables -A INPUT -p icmpv6 --icmpv6-type echo-request -m comment --comment "Deny echo request" -j DROP
+ip6tables -A INPUT -p icmpv6 -m comment --comment "Allow rest of ICMPv6" -j ACCEPT
+ip6tables -A INPUT -i lo -m comment --comment "Allow traffic on loopback" -j ACCEPT
+ip6tables -A INPUT -s fe80::/10 -m comment --comment "Allow traffic on link-local" -j ACCEPT
+ip6tables -A INPUT -d ff00::/8 -m comment --comment "Allow IPv6 multicast" -j ACCEPT
+ip6tables -A INPUT -p tcp -m tcp --dport !WEB! -m state --state NEW -m comment --comment "Allow ossim-logarchiver" -j ACCEPT
+ip6tables -A INPUT -p tcp -m tcp --dport !SSH! -m state --state NEW -m comment --comment "Allow SSH on !SSH!" -j ACCEPT

@@ -1,0 +1,22 @@
+set httpd port 2812 and
+   use address localhost  # only accept connection from localhost
+   allow localhost        # allow localhost to connect
+set alert !EMAIL!
+set mailserver 127.0.0.1
+
+# Nginx start >>>
+check process nginx with pidfile /var/run/nginx.pid
+      start program = "/etc/init.d/nginx start"
+      stop program = "/etc/init.d/nginx stop"
+      if 5 restarts within 5 cycles then alert
+# Nginx end <<<
+
+check process mongod with pidfile /var/run/mongod.pid
+      start program = "/etc/init.d/mongod start"
+      stop program = "/etc/init.d/mongod stop"
+      if 5 restarts within 5 cycles then alert
+
+check process ossim-logserver with pidfile /var/run/ossim-logserver.pid
+      start program = "/etc/init.d/ossim-logserver start"
+      stop program = "/etc/init.d/ossim-logserver stop"
+      if 5 restarts within 5 cycles then alert

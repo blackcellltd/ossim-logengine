@@ -1,0 +1,6 @@
+iptables -F
+iptables -P INPUT DROP
+iptables -A INPUT -i lo -m comment --comment "Allow loopback" -j ACCEPT
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -m comment --comment "Allow ESTABLISHED" -j ACCEPT
+iptables -A INPUT -p tcp --dport !WEB! -m comment --comment "Allow ossim-logserver" -j ACCEPT
+iptables -A INPUT -p tcp -m state --state NEW --dport !SSH! -m comment --comment "Allow SSH on !SSH!" -j ACCEPT

@@ -1,0 +1,30 @@
+<div class="container" style="padding: 1em">
+
+<div class="row">
+    <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+            <label>Count</label>
+            <input class="form-control" ng-model="count" ng-change="loadBarGraph()" type="number" min="0"/>
+        </div>
+        <div class="form-group">
+            <label>Offset</label>
+            <input class="form-control" ng-model="offset" ng-change="loadBarGraph()" type="number" min="0"/>
+        </div>
+        <div class="form-group">
+            <label>Resolution</label>
+            <select class="form-control" ng-model="resolution" ng-change="loadBarGraph()" ng-init="resolution = 'hours'">
+                <option ng-repeat="res in resolutions" value="{{res.value}}">{{res.name}}</option>
+            </select>
+        </div>
+    </form>
+</div>
+<div class="row" style="padding-top: 1em">
+    <canvas id="bar" class="chart chart-bar" chart-data="barData" chart-labels="barLabels" chart-series="barSeries"></canvas>
+</div>
+<div class="row" style="margin-top: :1em">
+    <canvas id="pie" class="chart chart-pie" chart-data="pieData" chart-labels="pieLabels"></canvas>
+</div>
+
+</div>
+
+
