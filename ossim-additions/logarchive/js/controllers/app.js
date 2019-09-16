@@ -1,6 +1,5 @@
 'use strict';
 
-
 var app = angular.module('bcloggerApp', ['ui.bootstrap', 'chart.js']);
 
 
@@ -151,6 +150,7 @@ app.controller("resultsController", ['$scope', '$http', '$timeout', '$window', '
     $scope.filters_backup = {}; //filter backup for restoring the initial state (everything shown)
     $scope.currentFilter = {}; //contains the currently selected filter
     $scope.filters = {};
+    $scope.load=true;
     $scope.filtertypes = [
         {name: "username", hrName: "Username", placeholder: "Username"},
         {name: "ip_src", hrName: "Source IP", placeholder: "aaa.bbb.ccc.ddd"},
@@ -311,6 +311,7 @@ app.controller("resultsController", ['$scope', '$http', '$timeout', '$window', '
             if (status == 200) {
                 $scope.activePlugins = data.plugins;
                 $scope.sids = data.sids;
+   	        $scope.load=false;
             }
             else {
             }
@@ -379,6 +380,7 @@ app.controller("resultsController", ['$scope', '$http', '$timeout', '$window', '
     //Search function, sends an http request with the filters and pagination information, it always resets the current page
     $scope.pageChangedOrSearch = function (isSearch) {
         $scope.filters2send = {$and: []};
+	$scope.load=true;
         angular.forEach($scope.filters, function (filter) {
             if (filter['$or'][0].plugin_id == undefined) {
                 $scope.filters2send['$and'].push(filter);
@@ -414,6 +416,7 @@ app.controller("resultsController", ['$scope', '$http', '$timeout', '$window', '
                 if (status == 200) {
                     $scope.results = data.splice(1);
                     $scope.originalResultLength = data[0]; //first item is the number of items
+		    $scope.load=false;
                 }
                 else {
                     $scope.showError("Unknown error", data);

@@ -1,8 +1,8 @@
 <?php
 /** Routing for the ajax proxy */
 $PROX_PREFIX = 'logarchive/';
-$SERVER_IP = '!SERVER!';
-$SERVER_PORT = '!PORT!';
+$SERVER_IP = '172.16.254.3';
+$SERVER_PORT = '4343';
 
 $isJSON = strpos($_SERVER["CONTENT_TYPE"], "json") > 0;
 $data = json_decode($HTTP_RAW_POST_DATA, true);
@@ -86,6 +86,7 @@ require_once 'av_init.php';
     <title>Log archive</title>
 </head>
 <body ng-controller="resultsController">
+<div ng-show="load">Loading...</div>
 <button class="btn" ng-click="openStatistics()">Statistics</button>
 <button class="btn {{ originalResultLength > 5000 ? 'disabled' : '' }}" ng-click="generateReport('pdf')">Generate report (PDF)</button>
 <button class="btn {{ originalResultLength > 5000 ? 'disabled' : '' }}" ng-click="generateReport('html')">Generate report (HTML)</button>
