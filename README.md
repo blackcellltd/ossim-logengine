@@ -20,6 +20,18 @@ The basic architecture of the system can be seen on ossim-logengine_basic_archit
 
 # Installation
 
-TBA
+Installing ossim-logarchiver (ossim-additions)
+
+- Log in to OSSIM 
+- select "Jailbreak System" from the menu, then Yes
+- Optional time synchronization, two methods (ntpdate or tlsdate)
+
+- copy ossim-additions folder to /opt
+- cd /opt/ossim-additions/
+- edit install.sh, put server IP and port (default 4343)
+- run install.sh
+- copy/save the generated password! it will be needed later
+
+
 
 # Troubleshooting
